@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feito à Mão - Busca de Cliente</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+<body>
+    <header>
+        <h1>Feito à Mão</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Página Inicial</a>
+        <a href="{{ url_for('main.cadastro_cliente') }}">Cadastro de Cliente</a>
+        <a href="{{ url_for('main.login') }}">Login</a>
+        <a href="{{ url_for('main.busca_cliente') }}">Buscar Cliente</a>
+    </nav>
+    <div class="container">
+        <h2>Buscar Cliente</h2>
+        <form action="{{ url_for('main.busca_cliente') }}" method="post">
+            <input type="text" name="termo_busca" placeholder="Digite o nome ou CPF do cliente">
+            <input type="submit" value="Buscar">
+        </form>
+        {% if resultados %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in resultados %}
+                        <tr>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.cpf }}</td>
+                            <td>{{ cliente.endereco }}</td>
+                            <td>{{ cliente.telefone }}</td>
+                            <td>{{ cliente.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum resultado encontrado.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feito à Mão - Login</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</head>
+<body>
+    <header>
+        <h1>Feito à Mão</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Página Inicial</a>
+        <a href="{{ url_for('main.cadastro_cliente') }}">Cadastro de Cliente</a>
+        <a href="{{ url_for('main.login') }}">Login</a>
+        <a href="{{ url_for('main.busca_cliente') }}">Buscar Cliente</a>
+    </nav>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="{{ url_for('main.login') }}" method="post">
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Ainda não tem uma conta? <a href="{{ url_for('main.cadastro_cliente') }}">Cadastre-se</a></p>
+    </div>
+</body>
+</html>
